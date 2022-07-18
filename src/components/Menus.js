@@ -12,6 +12,6 @@ import user from '../assets/User.png';
 export const Menus = [
     { id:1,title: "Candidates", src:dash, link: "/candidates" },
     { id:2,title: "Inbox", src:chat , link:"/inbox"},
-    { id:3,title: "Profile", src:user, gap: true , link:"/profile" },
+    { id:3,title: "Profile", src:user , link:"/profile" },
     
   ];

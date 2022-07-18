@@ -1,10 +1,38 @@
-import React from 'react';
+import React, { useState, useMemo, useRef, useEffect} from 'react'
+import { collection, getDocs, query } from 'firebase/firestore';
+import {db, storage} from '../firebase'
 
 
 const UserCard = () => {
     // const [size, setSize] = useState('large');
+    const [data, setData] = useState([]);
+    const [per, setPer] = useState(null);
+    const [file, setFile] = useState();
+    useEffect(() => {
+     
+      const fetchData = async () => {
+     
+        let list = [];
+        try{
+          const querySnapshot = await getDocs(collection(db, "users"));
+          querySnapshot.forEach((doc) => {
+              list.push({ id: doc.id, ...doc.data()});
+              
+          });
+          setData(list);
+          console.log(list)
+        }
+        catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData()
+     }, [])
+     
+  
   return (
         <div  class="">
+          {data.map(user => (
   <div  style={{ 
           width: 240,
           border: '3 0 solid',
@@ -13,7 +41,7 @@ const UserCard = () => {
           width: 240,
           border: '3 0 solid',
           height:200 }} class="flex items-center justify-center pt-5 flex-col">
-      <img alt="user" src="https://joeschmoe.io/api/v1/random" class="rounded-full w-32 md:w-20 lg:w-48"/>
+      <img alt="user" src={user.img} class="rounded-full w-32 md:w-20 lg:w-48"/>
       
     </div>
     <div class="flex justify-between p-4 ">
@@ -37,6 +65,7 @@ const UserCard = () => {
       </div>
       
     </div>
+          ))}
   </div>
 
 
