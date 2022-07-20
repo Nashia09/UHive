@@ -9,6 +9,7 @@ import { AuthContext, AuthContextProvider } from '../context/AuthContext';
 import { collection, documentId, getDocs, limit,orderBy, limitToLast, query } from 'firebase/firestore';
 import {db, storage} from '../firebase'
 import { async } from '@firebase/util';
+import Sidebar from './Sidebar';
 
 
 
@@ -80,16 +81,14 @@ const Candidates = () => {
   };
   
   return (
-    <div className=" bg-white-600 ">
+    <div>
+      {/* <Sidebar /> */}
+    <div className="ml-75 bg-white-600 ">
         
     
-  {/* <div className="text-xl  sm:justify-center sm:items-center bg-white  hover:shadow-lg " > */}
-  {/* <nav className="text-xl  sm:justify-center sm:items-center hover:shadow-lg w-screen pt-0  " > */}
-        
+  
   <ContentHeader/>
-  {/* <span className="font-light text-xl text-light-200 rounded-full bg-gradient-to-br from-blue-200 to-blue-300">Candidates</span> */}
-   
-    {/* </nav> */}
+ 
   <div >
         
   {data?.map(user => (
@@ -200,7 +199,7 @@ const Candidates = () => {
 
 
 
-
+</div>
 
 
        

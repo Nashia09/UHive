@@ -9,6 +9,7 @@ import { AuthContext } from '../context/AuthContext';
 import {   ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import { async } from '@firebase/util';
+import Sidebar from './Sidebar';
 
 const Profile = () => {
    
@@ -111,11 +112,15 @@ const {currentUser} = useContext(AuthContext);
   return (
 
    // 
-   <div className="">
-
    
-      <ContentHeader />
+   <div className=" flex  h-full">
+     {/* <Sidebar /> */}
+  <div>
+
+
+
       <div>
+     <ContentHeader />
   <div class="md:grid md:grid-cols-3 md:gap-6 bg-gray-200 w-screen">
   
     <div class="mt-5 md:mt-0 md:col-span-2 ml-10  ">
@@ -282,6 +287,7 @@ const {currentUser} = useContext(AuthContext);
     </div>
   </div>
 </div>
+    </div>
     </div>
   )
 }

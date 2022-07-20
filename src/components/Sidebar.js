@@ -31,15 +31,8 @@ const Sidebar = () => {
 
   return (
     <div style={{ height: '100%' }} className=" flex-shrink-1 relative inset-y-0 left-0 transition duration-200 ease-in-out ">
- <div className= "w-0  p-5 pt-duration-300 absolute h-screen md:w-72 bg-black  relative ">
-       
-       {/* <img
-         alt="img"
-        src={control}
-         className={`absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-dark-purple border-2 rounded-full ${!mini && "rotate-180"}`
-         }
-          onClick={() =>  setMini(!mini)}
-      /> */}
+ <div className= "w-0  p-5 pt-duration-300  h-screen md:w-72 bg-black  relative ">
+    
         <div className="flex gap-x-1 h-10 p-10  items-center">
          <img alt="img" src={blogo} 
          className={`cursor-pointer pt-20 duration-500 ${mini && "rotate-[360deg]"}`} />

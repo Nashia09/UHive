@@ -17,6 +17,7 @@ import { auth } from "../firebase";
 
     useEffect(() => {
         localStorage.setItem("user", JSON.stringify(state.currentUser))
+        
     }, [state.currentUser])
 
     const logout = () => {

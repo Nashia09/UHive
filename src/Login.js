@@ -19,6 +19,18 @@ const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 
+
+window.onload=function(){
+    
+  sign_up_btn.addEventListener('click', () => {
+    container.classList.add("sign-up-mode");
+  });
+  
+  sign_in_btn.addEventListener('click', () => {
+    container.classList.remove("sign-up-mode");
+  });
+}
+
 const Login = () => {
 
     const [loading, setLoading] = useState(false);
@@ -76,16 +88,18 @@ const Login = () => {
 
      
 
-      })
-      .catch((error) => {
-        setError(true);
-   });
-    
-    }
+     
+    })
+    .catch((error) => {
+      setError(true);
+ });
+
+}
+
 
       
        
-        const signUpBtn = () =>{
+        const handlesignUpBtn = () =>{
            if(sign_in_btn){
           //  sign_up_btn.addEventListener('click', () => {
                container.classList.add("sign-up-mode");
@@ -94,26 +108,27 @@ const Login = () => {
        }
        }
            
-           const signInBtn = () =>{
+           const handlesignInBtn = () =>{
               if(sign_up_btn){
-               sign_in_btn.addEventListener('click', () => {
+              //  sign_in_btn.addEventListener('click', () => {
                    container.classList.remove("sign-up-mode");
                    console.log('touched  sign')
 
                    
-                 }); }
+                //  }); 
+                }
                }
                
                useEffect(() => {
-                  signInBtn(); 
-                  signUpBtn();
-              }, []);
+                  handlesignInBtn(); 
+                  handlesignUpBtn();
+              },[]);
 
               
 
   return (
 
-    <body>
+    <div>
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
@@ -190,7 +205,7 @@ const Login = () => {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
-            <button class="btn transparent" id="sign-up-btn" onClick={signUpBtn}>
+            <button class="btn transparent" id="sign-up-btn" onClick={handlesignUpBtn}>
               Sign up
             </button>
           </div>
@@ -203,7 +218,7 @@ const Login = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
               laboriosam ad deleniti.
             </p>
-            <button class="btn transparent" id="sign-in-btn"  onClick={signInBtn}>
+            <button class="btn transparent" id="sign-in-btn"  onClick={handlesignInBtn}>
               Sign in
             </button>
           </div>
@@ -213,6 +228,10 @@ const Login = () => {
     </div>
            
            
+  </div>
+  
+  )
+}
            <Helmet>
     
            <script type="text/javascript"  src="./log" charset="utf-8" defer>
@@ -220,9 +239,5 @@ const Login = () => {
            
            </script>
             </Helmet>
-  </body>
-  
-  )
-}
 
 export default Login
