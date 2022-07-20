@@ -21,7 +21,9 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [email, setEmail] = useState()
+    const [fullname, setFullName] = useState()
     const [password, setPassword] = useState()
+   
 
     const navigate = useNavigate()
 
@@ -29,13 +31,15 @@ const SignUp = () => {
     
     const handleSignup = async (e) => {
         e.preventDefault();
- 
+
+        
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
          //  const user = userCredentials.user;
- 
+      
            setDoc(doc(db, "users", userCredentials.user.uid ), {
            email: email,
+           Name: fullname,
            timeStamp: serverTimestamp(),
            
          });
@@ -45,8 +49,9 @@ const SignUp = () => {
          
  
          // console.log(userCredentials);
-         alert("Success!!!"); 
-         // <Redirect to='/' />
+         alert("Congrats Your sign up is done"); 
+         
+         navigate('/', { replace: true });
  
         })
         .catch((error) => {
@@ -66,17 +71,17 @@ const SignUp = () => {
     <div className='bg-gray-800 flex flex-col justify-center'>
         <form className='max-w-[400px] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg'>
             <h2 className='text-4xl text-white font-bold text-center'>SIGN UP</h2>
-
+        
             <div className='flex flex-col text-gray-400 py-2 '>
                 <label>Full Name</label>
-                <input className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none '   type='text'/>
+                <input className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none '  onChange={e=>setFullName(e.target.value)}  type='text'/>
             </div>
 
             <div className='flex flex-col text-gray-400 py-2'>
                 <label>Email</label>
                 <input className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none ' onChange={e=>setEmail(e.target.value)}  type='email'/>
             </div>
-
+          
             <div className='flex flex-col text-gray-400 py-2'>
                 <label>Password</label>
                 <input className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none ' onChange={e=>setPassword(e.target.value)} type='password'/>

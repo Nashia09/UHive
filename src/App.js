@@ -26,9 +26,9 @@ const  App = () => {
 
   const onSearch = (value) => console.log(value);
  
-  // const {currentUser} = useContext(AuthContext)
+  const {currentUser} = useContext(AuthContext)
 
-  const currentUser = true
+  // const currentUser = false
   const RequireAuth = ({children}) => {
 
     

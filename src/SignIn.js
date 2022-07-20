@@ -3,11 +3,7 @@ import { Link, Navigate } from 'react-router-dom'
 import blogo from './assets/unlock.svg'
 import React, { useContext, useEffect, useRef, useState }  from 'react';
 import './Login.css';
-import {Helmet} from "react-helmet";
-import log from './assets/blogo.png';
-import reg from './assets/register.svg';
-import { signup } from './firebase';
-import Password from 'antd/lib/input/Password';
+
 import { auth, db} from './firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import {Route, Routes, useNavigate, Redirect } from 'react-router-dom';
@@ -27,7 +23,7 @@ const SignIn = () => {
 
     const {dispatch} = useContext(AuthContext)
 
-
+   
 
     const handleSignIn = (e) => {
       e.preventDefault();
@@ -39,10 +35,13 @@ const SignIn = () => {
        dispatch({type: "LOGIN", payload:user})
        console.log(user);
        alert("Success!!!"); 
-
+      
       //  <Route  path="/" element={ < />} />
 
-      <Navigate to="/profile" replace={true} />
+    //   <Navigate to="/profile" replace={true} />
+       
+    navigate('/profile', { replace: true });
+
 
      
     })
@@ -62,7 +61,7 @@ const SignIn = () => {
     <div className='bg-gray-800 flex flex-col justify-center'>
         <form className='max-w-[400px] w-full mx-auto bg-gray-900 p-8 px-8 rounded-lg'>
             <h2 className='text-4xl text-white font-bold text-center'>SIGN IN</h2>
-
+            {error?  <span className='text-red-400' >Invalid Details</span> : ""}
             <div className='flex flex-col text-gray-400 py-2 '>
                 <label>Email</label>
                 <input className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none '  onChange={e=>setEmail(e.target.value)}  type='email'/>
